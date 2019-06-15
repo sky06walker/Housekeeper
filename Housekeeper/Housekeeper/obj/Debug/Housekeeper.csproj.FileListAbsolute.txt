@@ -1,3 +1,4 @@
+D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\obj\Debug\Housekeeper.csproj.CoreCompileInputs.cache
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\bin\Housekeeper.dll.config
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\bin\Housekeeper.dll
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\bin\Housekeeper.pdb
@@ -66,8 +67,7 @@ D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\bin\System.Web.Webpages.Ra
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\bin\System.Web.Helpers.xml
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\bin\System.Web.Mvc.xml
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\obj\Debug\Housekeeper.csprojAssemblyReference.cache
-D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\obj\Debug\Housekeeper.csproj.CoreCompileInputs.cache
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\obj\Debug\Housekeeper.csproj.CopyComplete
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\obj\Debug\Housekeeper.dll
 D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\obj\Debug\Housekeeper.pdb
+D:\Self Study\MVC\Housekeeper\Housekeeper\Housekeeper\obj\Debug\Housekeeper.csprojAssemblyReference.cache
