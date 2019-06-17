@@ -5,18 +5,20 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Housekeeper.Models;
 
 namespace Housekeeper.Controllers
 {
     public class UsersMasterController : Controller
     {
-        //Registration action
+        #region//Registration action
         [HttpGet]
         public ActionResult Registration()
         {
             return View();
         }
+        #endregion
 
         #region//Registration POST action
         [HttpPost]
@@ -113,6 +115,74 @@ namespace Housekeeper.Controllers
             }
             ViewBag.Status = Status;
             return View();
+        }
+        #endregion
+
+        #region //Login
+        [HttpGet]
+        public ActionResult UserLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserLogin(UserLogin login, string ReturnUrl)
+        {
+            string message = "";
+
+            using(HousekeeperDataEntities dc=new HousekeeperDataEntities())
+            {
+                var v = dc.UsersMasters.Where(a => a.UserName == login.Username).FirstOrDefault();
+                if (v != null)
+                {
+                    if (string.Compare(Crypto.Hash(login.Password),v.Password) == 0)
+                    {
+                        //Process to save login
+                        int timeout = login.SaveLogin ? 525600 : 1; //525600 min = 1 year
+                        var ticket = new FormsAuthenticationTicket(login.Username, login.SaveLogin, timeout);
+                        string encrypted = FormsAuthentication.Encrypt(ticket);
+                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted)
+                        {
+                            Expires = DateTime.Now.AddMinutes(timeout),
+                            HttpOnly = true
+                        };
+                        Response.Cookies.Add(cookie);
+
+                        if (Url.IsLocalUrl(ReturnUrl))
+                        {
+                            return Redirect(ReturnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else
+                    {
+                        message = "Invalid password!";
+                        ModelState.AddModelError("InvalidPassword", message);
+                    }
+                }
+                else
+                {
+                    message = "Invalid username!";
+                    ModelState.AddModelError("InvalidUsername", message);
+                }
+            }
+
+            ViewBag.Message = message;
+            return View();
+        }
+        #endregion
+        
+        #region//Logout
+        [Authorize]
+        [HttpPost]
+        public ActionResult logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("UserLogin", "UsersMaster");
         }
         #endregion
 
